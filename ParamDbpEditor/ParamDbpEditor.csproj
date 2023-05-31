@@ -387,6 +387,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
