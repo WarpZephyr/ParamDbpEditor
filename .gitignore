@@ -361,5 +361,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/ParamDbpEditor/Resources/ACFA/dbp/Assemble.descriptions.txt
-/ParamDbpEditor/Resources/ACFA/dbp/NewAcBehavior.descriptions.txt

@@ -8,34 +8,35 @@ namespace CustomForms
     /// </summary>
     public class SelectableColorTable : ProfessionalColorTable
     {
-        public Color SelectedMenuBorder { get; set; }
-        public Color SelectedMenuItem { get; set; }
-        public Color SelectedMenuItemBorder { get; set; }
-        public Color SelectedGradientTopMenu { get; set; }
-        public Color SelectedGradientTopMenuItem { get; set; }
-        public Color SelectedGradientBottomMenu { get; set; }
-        public Color SelectedGradientBottomMenuItem { get; set; }
-        public Color BackgroundDropDown { get; set; }
-        public Color GradientTopImageMargin { get; set; }
-        public Color GradientBottomImageMargin { get; set; }
+        public Color CustomMenuBorder                       { get; set; }
+        public Color CustomMenuItemSelected                 { get; set; }
+        public Color CustomMenuItemBorder                   { get; set; }
+        public Color CustomMenuItemPressedGradientBegin     { get; set; }
+        public Color CustomMenuItemPressedGradientEnd       { get; set; }
+        public Color CustomMenuItemSelectedGradientBegin    { get; set; }
+        public Color CustomMenuItemSelectedGradientEnd      { get; set; }
+        public Color CustomToolStripDropDownBackground      { get; set; }
+        public Color CustomImageMarginGradientBegin         { get; set; }
+        public Color CustomImageMarginGradientEnd           { get; set; }
 
-        internal static Color DefaultDark = Color.FromArgb(40, 40, 40);
-        internal static Color DefaultDarkSelected = Color.FromArgb(50, 50, 50);
-        internal static Color DefaultDarkGradientFlatSelected = ColorTranslator.FromHtml("#282828");
-        internal static Color DefaultDarkBackground = ColorTranslator.FromHtml("#282828");
+        internal static Color DefaultDark                       = Color.FromArgb(40, 40, 40);
+        internal static Color DefaultDarkSelected               = Color.FromArgb(50, 50, 50);
+        internal static Color DefaultDarkGradientFlatPressed    = Color.FromArgb(55, 55, 55);
+        internal static Color DefaultDarkGradientFlatSelected   = Color.FromArgb(40, 40, 40);
+        internal static Color DefaultDarkBackground             = Color.FromArgb(40, 40, 40);
 
         public SelectableColorTable()
         {
-            SelectedMenuBorder = DefaultDark;
-            SelectedMenuItem = DefaultDarkSelected;
-            SelectedMenuItemBorder = DefaultDark;
-            SelectedGradientTopMenu = DefaultDarkGradientFlatSelected;
-            SelectedGradientTopMenuItem = DefaultDarkGradientFlatSelected;
-            SelectedGradientBottomMenu = DefaultDarkGradientFlatSelected;
-            SelectedGradientBottomMenuItem = DefaultDarkGradientFlatSelected;
-            BackgroundDropDown = DefaultDarkBackground;
-            GradientTopImageMargin = DefaultDarkGradientFlatSelected;
-            GradientBottomImageMargin = DefaultDarkGradientFlatSelected;
+            CustomMenuBorder                    = DefaultDark;
+            CustomMenuItemSelected              = DefaultDarkSelected;
+            CustomMenuItemBorder                = DefaultDark;
+            CustomMenuItemPressedGradientBegin  = DefaultDarkGradientFlatPressed;
+            CustomMenuItemPressedGradientEnd    = DefaultDarkGradientFlatPressed;
+            CustomMenuItemSelectedGradientBegin = DefaultDarkGradientFlatSelected;
+            CustomMenuItemSelectedGradientEnd   = DefaultDarkGradientFlatSelected;
+            CustomToolStripDropDownBackground   = DefaultDarkBackground;
+            CustomImageMarginGradientBegin      = DefaultDarkGradientFlatSelected;
+            CustomImageMarginGradientEnd        = DefaultDarkGradientFlatSelected;
         }
 
         /// <summary>
@@ -43,66 +44,46 @@ namespace CustomForms
         /// </summary>
         public void SetDefaultDark()
         {
-            SelectedMenuBorder = DefaultDark;
-            SelectedMenuItem = DefaultDarkSelected;
-            SelectedMenuItemBorder = DefaultDark;
-            SelectedGradientTopMenu = DefaultDarkGradientFlatSelected;
-            SelectedGradientTopMenuItem = DefaultDarkGradientFlatSelected;
-            SelectedGradientBottomMenu = DefaultDarkGradientFlatSelected;
-            SelectedGradientBottomMenuItem = DefaultDarkGradientFlatSelected;
-            BackgroundDropDown = DefaultDarkBackground;
-            GradientTopImageMargin = DefaultDarkGradientFlatSelected;
-            GradientBottomImageMargin = DefaultDarkGradientFlatSelected;
+            CustomMenuBorder                    = DefaultDark;
+            CustomMenuItemBorder                = DefaultDark;
+            CustomMenuItemSelected              = DefaultDarkSelected;
+            CustomMenuItemPressedGradientBegin  = DefaultDarkGradientFlatPressed;
+            CustomMenuItemPressedGradientEnd    = DefaultDarkGradientFlatPressed;
+            CustomMenuItemSelectedGradientBegin = DefaultDarkGradientFlatSelected;
+            CustomMenuItemSelectedGradientEnd   = DefaultDarkGradientFlatSelected;
+            CustomToolStripDropDownBackground   = DefaultDarkBackground;
+            CustomImageMarginGradientBegin      = DefaultDarkGradientFlatSelected;
+            CustomImageMarginGradientEnd        = DefaultDarkGradientFlatSelected;
         }
 
         public override Color MenuBorder
-        {
-            get { return SelectedMenuBorder; }
-        }
-
-        public override Color MenuItemSelected
-        {
-            get { return SelectedMenuItem; }
-        }
+        => CustomMenuBorder;
 
         public override Color MenuItemBorder
-        {
-            get { return SelectedMenuItemBorder; }
-        }
+        => CustomMenuItemBorder;
 
+        public override Color MenuItemSelected
+        => CustomMenuItemSelected;
+        
         public override Color MenuItemSelectedGradientBegin
-        {
-            get { return SelectedGradientTopMenuItem; }
-        }
+        => CustomMenuItemSelectedGradientBegin;
 
         public override Color MenuItemSelectedGradientEnd
-        {
-            get { return SelectedGradientBottomMenuItem; }
-        }
-
-        public override Color MenuItemPressedGradientBegin
-        {
-            get { return SelectedGradientTopMenu; }
-        }
+        => CustomMenuItemSelectedGradientEnd;
 
         public override Color MenuItemPressedGradientEnd
-        {
-            get { return SelectedGradientBottomMenu; }
-        }
+        => CustomMenuItemPressedGradientEnd;
+
+        public override Color MenuItemPressedGradientBegin
+        => CustomMenuItemPressedGradientBegin;
 
         public override Color ToolStripDropDownBackground
-        {
-            get { return BackgroundDropDown; }
-        }
+        => CustomToolStripDropDownBackground;
 
         public override Color ImageMarginGradientBegin
-        {
-            get { return GradientTopImageMargin; }
-        }
+        => CustomImageMarginGradientBegin;
 
         public override Color ImageMarginGradientEnd
-        {
-            get { return GradientBottomImageMargin; }
-        }
+        => CustomImageMarginGradientEnd;
     }
 }

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace Utilities
 {
@@ -47,13 +48,15 @@ namespace Utilities
         /// </summary>
         /// <param name="initialDirectory">A string representing the path the dialog box should open in.</param>
         /// <param name="title">A string containing the title to display in the dialog box.</param>
+        /// <param name="filter">What filetypes should be shown in the "Files of type" filter.</param>
         /// <returns>A string representing the path to a file a user selects.</returns>
-        public static string GetFilePath(string initialDirectory = null, string title = null)
+        public static string GetFilePath(string initialDirectory = null, string title = null, string filter = null)
         {
             OpenFileDialog filePathDialog = new OpenFileDialog()
             {
                 InitialDirectory = initialDirectory ?? "C:\\Users",
-                Title = $"{title ?? "Select a file to open."}"
+                Title = $"{title ?? "Select a file to open."}",
+                Filter = $"{filter ?? "All files (*.*)|*.*"}"
             };
 
             return filePathDialog.ShowDialog() == DialogResult.OK ? filePathDialog.FileName : null;
@@ -250,6 +253,55 @@ namespace Utilities
                     File.Copy(file, Path.Combine(newPath, Path.GetFileName(file)));
                 }
             }
+        }
+
+        /// <summary>
+        /// Open a folder on the specified path in explorer.exe.
+        /// </summary>
+        /// <param name="folderPath">The path to the folder to open.</param>
+        /// <returns>Whether or not opening the folder was successful.</returns>
+        public static bool OpenFolder(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+
+                Process.Start(startInfo);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Open the "res" folder in the current program.
+        /// </summary>
+        /// <returns>Whether or not opening the folder was successful.</returns>
+        public static bool OpenRes()
+        {
+            return OpenFolder(ResFolderPath);
+        }
+
+        /// <summary>
+        /// Open the "Resource" folder in the current program.
+        /// </summary>
+        /// <returns>Whether or not opening the folder was successful.</returns>
+        public static bool OpenResource()
+        {
+            return OpenFolder(ResourceFolderPath);
+        }
+
+        /// <summary>
+        /// Open the "Resources" folder in the current program.
+        /// </summary>
+        /// <returns>Whether or not opening the folder was successful.</returns>
+        public static bool OpenResources()
+        {
+            return OpenFolder(ResourcesFolderPath);
         }
     }
 }

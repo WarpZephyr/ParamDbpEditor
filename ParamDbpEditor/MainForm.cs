@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
 using Utilities;
@@ -35,9 +36,8 @@ namespace ParamDbpEditor
 
             // Hide image margins on all menuitems containing submenus.
             ((ToolStripDropDownMenu)MenuFile.DropDown).ShowImageMargin = false;
-            ((ToolStripDropDownMenu)MenuConvert.DropDown).ShowImageMargin = false;
-            ((ToolStripDropDownMenu)MenuConvertDbp.DropDown).ShowImageMargin = false;
-            ((ToolStripDropDownMenu)MenuConvertDbpEndian.DropDown).ShowImageMargin = false;
+            ((ToolStripDropDownMenu)MenuImport.DropDown).ShowImageMargin = false;
+            ((ToolStripDropDownMenu)MenuImportDbp.DropDown).ShowImageMargin = false;
             ((ToolStripDropDownMenu)MenuExport.DropDown).ShowImageMargin = false;
             ((ToolStripDropDownMenu)MenuExportDbp.DropDown).ShowImageMargin = false;
             ((ToolStripDropDownMenu)MenuExportParam.DropDown).ShowImageMargin = false;
@@ -45,6 +45,10 @@ namespace ParamDbpEditor
             ((ToolStripDropDownMenu)MenuExportTxtXml.DropDown).ShowImageMargin = false;
             ((ToolStripDropDownMenu)MenuExportXml.DropDown).ShowImageMargin = false;
             ((ToolStripDropDownMenu)MenuExportXmlTxt.DropDown).ShowImageMargin = false;
+            ((ToolStripDropDownMenu)MenuConvert.DropDown).ShowImageMargin = false;
+            ((ToolStripDropDownMenu)MenuConvertDbp.DropDown).ShowImageMargin = false;
+            ((ToolStripDropDownMenu)MenuConvertDbpEndian.DropDown).ShowImageMargin = false;
+            ((ToolStripDropDownMenu)MenuOther.DropDown).ShowImageMargin = false;
             ContextMenuFile.ShowImageMargin = false;
 
             // Get the supported dbp games
@@ -72,7 +76,10 @@ namespace ParamDbpEditor
         {
             string[] paths = PathUtil.GetFilePaths("C:\\Users", "Open Dbp Params", "Dbp Params (*.bin)|*.bin|All files (*.*)|*.*");
             if (paths == null)
+            {
+                StatusLabel.Text = "Canceled opening files.";
                 return;
+            }
 
             FileHandler(paths);
         }
@@ -200,6 +207,49 @@ namespace ParamDbpEditor
         }
 
         #endregion FileIO
+
+        #region Import
+
+        private void MenuImportDbpDescriptions_Click(object sender, EventArgs e)
+        {
+            if (FileDGV.CurrentRow == null)
+                return;
+
+            string path = PathUtil.GetFilePath("C:\\Users\\", "Select a txt file with descriptions to import into the current dbp", "Txt (*.txt)|*.txt|All files (*.*)|*.*");
+            if (path == null)
+            {
+                StatusLabel.Text = "Canceled importing dbp descriptions.";
+                return;
+            }
+
+            var encoding = Encoding.GetEncoding(932); // Shift-JIS
+            string[] lines = File.ReadAllLines(path, encoding);
+
+            var dbp = ((DbpParamWrapper)FileDGV.CurrentRow.DataBoundItem).AppliedDbp;
+            int fieldCount = dbp.Fields.Count;
+
+            if (fieldCount != lines.Length)
+            {
+                StatusLabel.Text = $"Line count {lines.Length} does not match field count {fieldCount} in dbp.";
+                return;
+            }
+
+            try
+            {
+                PARAMDBP.TxtSerializer.DeserializeDescriptions(dbp, path);
+                DbpParams[FileDGV.CurrentRow.Index].AppliedDbp = dbp;
+            }
+            catch
+            {
+                StatusLabel.Text = "Failed to import descriptions for an unknown reason, canceling.";
+                return;
+            }
+
+            CellDGV.Refresh();
+            StatusLabel.Text = $"Finished importing {lines.Length} into {fieldCount} fields.";
+        }
+
+        #endregion Import
 
         #region Export
 
@@ -707,6 +757,30 @@ namespace ParamDbpEditor
 
         #endregion Dump
 
+        #region Other
+
+        private void MenuOtherOpenResDir_Click(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(PathUtil.ResourcesFolderPath))
+            {
+                bool question = FormUtil.ShowQuestionDialog("WARNING: Resources folder not found, would you like to have it recreated and go to it?", "Recreate Missing Resources Folder");
+                if (!question)
+                {
+                    StatusLabel.Text = $"Canceled Resources folder recreation.";
+                    return;
+                }
+
+                Directory.CreateDirectory(PathUtil.ResourcesFolderPath);
+            }
+
+            if (PathUtil.OpenResources())
+                StatusLabel.Text = "Successfully opened the Resources folder.";
+            else
+                StatusLabel.Text = "Failed to open the Resources folder.";
+        }
+
+        #endregion Other
+
         #region Events
 
         #region ControlEvents
@@ -743,6 +817,13 @@ namespace ParamDbpEditor
             {
                 DbpParams[index].DbpModified = true;
             }
+        }
+
+        private void MenuRefresh_Click(object sender, EventArgs e)
+        {
+            CellDGV.Refresh();
+            FileDGV.Refresh();
+            StatusLabel.Text = "Refreshed views.";
         }
 
         #endregion ControlEvents
@@ -811,27 +892,28 @@ namespace ParamDbpEditor
 
                 string extension = Path.GetExtension(path).ToLower();
                 PARAMDBP dbp;
-                switch (extension)
-                {
-                    case ".dbp":
-                        dbp = PARAMDBP.Read(path);
-                        break;
-                    case ".txt":
-                        dbp = PARAMDBP.TxtSerializer.DeserializeDbp(path);
-                        break;
-                    case ".xml":
-                        dbp = PARAMDBP.XmlSerializer.DeserializeDbp(path);
-                        break;
-                    case ".json":
-                        dbp = EditorJsonSerializer.ConvertDataToTypes(JsonSerializer.Deserialize<PARAMDBP>(File.ReadAllText(path)));
-                        break;
-                    default:
-                        total -= 1;
-                        continue;
-                }
 
                 try
                 {
+                    switch (extension)
+                    {
+                        case ".dbp":
+                            dbp = PARAMDBP.Read(path);
+                            break;
+                        case ".txt":
+                            dbp = PARAMDBP.TxtSerializer.DeserializeDbp(path);
+                            break;
+                        case ".xml":
+                            dbp = PARAMDBP.XmlSerializer.DeserializeDbp(path);
+                            break;
+                        case ".json":
+                            dbp = EditorJsonSerializer.ConvertDataToTypes(JsonSerializer.Deserialize<PARAMDBP>(File.ReadAllText(path)));
+                            break;
+                        default:
+                            total -= 1;
+                            continue;
+                    }
+
                     Dbps.Add(new DbpWrapper(dbp, path));
                     count++;
                 }
