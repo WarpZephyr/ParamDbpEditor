@@ -37,11 +37,11 @@ namespace ParamDbpEditor
                 switch (type)
                 {
                     case ConvertType.BigEndian:
-                        dbp.WriteBigEndian = true;
+                        dbp.BigEndian = true;
                         dbp.Write(path);
                         return true;
                     case ConvertType.LittleEndian:
-                        dbp.WriteBigEndian = false;
+                        dbp.BigEndian = false;
                         dbp.Write(path);
                         return true;
                     default:

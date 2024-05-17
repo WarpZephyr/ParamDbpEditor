@@ -380,12 +380,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SoulsFormats\SoulsFormats\SoulsFormats.csproj">
-      <Project>{effe8a43-84bd-45b5-85b7-5afb1618a4cd}</Project>
-      <Name>SoulsFormats</Name>
+    <ProjectReference Include="..\..\SoulsFormatsExtended\SoulsFormats\SoulsFormatsExtended.csproj">
+      <Project>{5f0ac9c0-12ca-4273-8e74-4e951b298a36}</Project>
+      <Name>SoulsFormatsExtended</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -393,6 +392,9 @@
     <Content Include="Resources\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Custom\dbp\AcColorSet.dbp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Custom\dbp\add-custom-dbps-to-this-folder">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

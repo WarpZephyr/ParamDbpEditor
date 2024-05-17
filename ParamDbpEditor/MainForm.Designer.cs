@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainFormMenu = new System.Windows.Forms.MenuStrip();
             this.MenuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +43,9 @@
             this.MenuSaveAll = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuCloseAll = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuFileSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.MenuImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuImportDbp = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuImportDbpDescriptions = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuExport = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuExportDbp = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuExportDbpTxt = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +81,9 @@
             this.MenuDumpParam = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuDumpParamValues = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuDumpParamValuesDescriptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuOther = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuOtherOpenResDir = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.MainFormToolStrip = new System.Windows.Forms.ToolStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripLabel();
             this.GameComboBox = new System.Windows.Forms.ToolStripComboBox();
@@ -92,12 +98,6 @@
             this.celltype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.celldescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cellvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MenuImport = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuImportDbp = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuImportDbpDescriptions = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuOther = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuRefresh = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuOtherOpenResDir = new System.Windows.Forms.ToolStripMenuItem();
             this.MainFormMenu.SuspendLayout();
             this.MainFormToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
@@ -204,6 +204,38 @@
             this.MenuFileSeparator1.Name = "MenuFileSeparator1";
             this.MenuFileSeparator1.Size = new System.Drawing.Size(191, 6);
             // 
+            // MenuImport
+            // 
+            this.MenuImport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.MenuImport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuImportDbp});
+            this.MenuImport.ForeColor = System.Drawing.SystemColors.Control;
+            this.MenuImport.Name = "MenuImport";
+            this.MenuImport.Size = new System.Drawing.Size(194, 22);
+            this.MenuImport.Text = "Import";
+            this.MenuImport.ToolTipText = "Import data into the editor or current files within the editor.";
+            // 
+            // MenuImportDbp
+            // 
+            this.MenuImportDbp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.MenuImportDbp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuImportDbpDescriptions});
+            this.MenuImportDbp.ForeColor = System.Drawing.SystemColors.Control;
+            this.MenuImportDbp.Name = "MenuImportDbp";
+            this.MenuImportDbp.Size = new System.Drawing.Size(96, 22);
+            this.MenuImportDbp.Text = "Dbp";
+            this.MenuImportDbp.ToolTipText = "Import data into dbps";
+            // 
+            // MenuImportDbpDescriptions
+            // 
+            this.MenuImportDbpDescriptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.MenuImportDbpDescriptions.ForeColor = System.Drawing.SystemColors.Control;
+            this.MenuImportDbpDescriptions.Name = "MenuImportDbpDescriptions";
+            this.MenuImportDbpDescriptions.Size = new System.Drawing.Size(139, 22);
+            this.MenuImportDbpDescriptions.Text = "Descriptions";
+            this.MenuImportDbpDescriptions.ToolTipText = "Import new descriptions into a dbp.";
+            this.MenuImportDbpDescriptions.Click += new System.EventHandler(this.MenuImportDbpDescriptions_Click);
+            // 
             // MenuExport
             // 
             this.MenuExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
@@ -229,7 +261,7 @@
             this.MenuExportDbpParam});
             this.MenuExportDbp.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuExportDbp.Name = "MenuExportDbp";
-            this.MenuExportDbp.Size = new System.Drawing.Size(180, 22);
+            this.MenuExportDbp.Size = new System.Drawing.Size(108, 22);
             this.MenuExportDbp.Text = "Dbp";
             this.MenuExportDbp.ToolTipText = "Export dbps to various supported formats.";
             // 
@@ -238,7 +270,7 @@
             this.MenuExportDbpTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.MenuExportDbpTxt.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuExportDbpTxt.Name = "MenuExportDbpTxt";
-            this.MenuExportDbpTxt.Size = new System.Drawing.Size(180, 22);
+            this.MenuExportDbpTxt.Size = new System.Drawing.Size(108, 22);
             this.MenuExportDbpTxt.Text = "Txt";
             this.MenuExportDbpTxt.ToolTipText = "Export dbps to txt.";
             this.MenuExportDbpTxt.Click += new System.EventHandler(this.MenuExportDbpTxt_Click);
@@ -248,7 +280,7 @@
             this.MenuExportDbpXml.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.MenuExportDbpXml.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuExportDbpXml.Name = "MenuExportDbpXml";
-            this.MenuExportDbpXml.Size = new System.Drawing.Size(180, 22);
+            this.MenuExportDbpXml.Size = new System.Drawing.Size(108, 22);
             this.MenuExportDbpXml.Text = "Xml";
             this.MenuExportDbpXml.ToolTipText = "Export dbps to xml.";
             this.MenuExportDbpXml.Click += new System.EventHandler(this.MenuExportDbpXml_Click);
@@ -258,7 +290,7 @@
             this.MenuExportDbpJson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.MenuExportDbpJson.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuExportDbpJson.Name = "MenuExportDbpJson";
-            this.MenuExportDbpJson.Size = new System.Drawing.Size(180, 22);
+            this.MenuExportDbpJson.Size = new System.Drawing.Size(108, 22);
             this.MenuExportDbpJson.Text = "Json";
             this.MenuExportDbpJson.ToolTipText = "Export dbps to json.";
             this.MenuExportDbpJson.Click += new System.EventHandler(this.MenuExportDbpJson_Click);
@@ -268,7 +300,7 @@
             this.MenuExportDbpParam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.MenuExportDbpParam.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuExportDbpParam.Name = "MenuExportDbpParam";
-            this.MenuExportDbpParam.Size = new System.Drawing.Size(180, 22);
+            this.MenuExportDbpParam.Size = new System.Drawing.Size(108, 22);
             this.MenuExportDbpParam.Text = "Param";
             this.MenuExportDbpParam.ToolTipText = "Export dbps to params with default values.";
             this.MenuExportDbpParam.Click += new System.EventHandler(this.MenuExportDbpParam_Click);
@@ -282,7 +314,7 @@
             this.MenuExportParamJson});
             this.MenuExportParam.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuExportParam.Name = "MenuExportParam";
-            this.MenuExportParam.Size = new System.Drawing.Size(180, 22);
+            this.MenuExportParam.Size = new System.Drawing.Size(108, 22);
             this.MenuExportParam.Text = "Param";
             this.MenuExportParam.ToolTipText = "Export params to various supported formats.";
             // 
@@ -325,7 +357,7 @@
             this.MenuExportTxtXml});
             this.MenuExportTxt.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuExportTxt.Name = "MenuExportTxt";
-            this.MenuExportTxt.Size = new System.Drawing.Size(180, 22);
+            this.MenuExportTxt.Size = new System.Drawing.Size(108, 22);
             this.MenuExportTxt.Text = "Txt";
             this.MenuExportTxt.ToolTipText = "Export serialized txt files to their original formats.";
             // 
@@ -390,7 +422,7 @@
             this.MenuExportXmlTxt});
             this.MenuExportXml.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuExportXml.Name = "MenuExportXml";
-            this.MenuExportXml.Size = new System.Drawing.Size(180, 22);
+            this.MenuExportXml.Size = new System.Drawing.Size(108, 22);
             this.MenuExportXml.Text = "Xml";
             this.MenuExportXml.ToolTipText = "Export serialized xml files to their original formats.";
             // 
@@ -453,7 +485,7 @@
             this.MenuExportJsonDbp});
             this.MenuExportJson.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuExportJson.Name = "MenuExportJson";
-            this.MenuExportJson.Size = new System.Drawing.Size(180, 22);
+            this.MenuExportJson.Size = new System.Drawing.Size(108, 22);
             this.MenuExportJson.Text = "Json";
             this.MenuExportJson.ToolTipText = "Export serialized json files to their original formats.";
             // 
@@ -485,7 +517,7 @@
             this.MenuConvertDbpEndian});
             this.MenuConvertDbp.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuConvertDbp.Name = "MenuConvertDbp";
-            this.MenuConvertDbp.Size = new System.Drawing.Size(180, 22);
+            this.MenuConvertDbp.Size = new System.Drawing.Size(96, 22);
             this.MenuConvertDbp.Text = "Dbp";
             this.MenuConvertDbp.ToolTipText = "Convert data within dbps.";
             // 
@@ -540,7 +572,7 @@
             this.MenuDumpDbpDescriptions});
             this.MenuDumpDbp.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuDumpDbp.Name = "MenuDumpDbp";
-            this.MenuDumpDbp.Size = new System.Drawing.Size(180, 22);
+            this.MenuDumpDbp.Size = new System.Drawing.Size(108, 22);
             this.MenuDumpDbp.Text = "Dbp";
             this.MenuDumpDbp.ToolTipText = "Dump data from dbps.";
             // 
@@ -549,7 +581,7 @@
             this.MenuDumpDbpDescriptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.MenuDumpDbpDescriptions.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuDumpDbpDescriptions.Name = "MenuDumpDbpDescriptions";
-            this.MenuDumpDbpDescriptions.Size = new System.Drawing.Size(180, 22);
+            this.MenuDumpDbpDescriptions.Size = new System.Drawing.Size(139, 22);
             this.MenuDumpDbpDescriptions.Text = "Descriptions";
             this.MenuDumpDbpDescriptions.ToolTipText = "Dump dbp descriptions to a txt file.";
             this.MenuDumpDbpDescriptions.Click += new System.EventHandler(this.MenuDumpDbpDescriptions_Click);
@@ -562,7 +594,7 @@
             this.MenuDumpParamValuesDescriptions});
             this.MenuDumpParam.ForeColor = System.Drawing.SystemColors.Control;
             this.MenuDumpParam.Name = "MenuDumpParam";
-            this.MenuDumpParam.Size = new System.Drawing.Size(180, 22);
+            this.MenuDumpParam.Size = new System.Drawing.Size(108, 22);
             this.MenuDumpParam.Text = "Param";
             this.MenuDumpParam.ToolTipText = "Dump data from params.";
             // 
@@ -585,6 +617,37 @@
             this.MenuDumpParamValuesDescriptions.Text = "Values with Descriptions";
             this.MenuDumpParamValuesDescriptions.ToolTipText = "Dump param descriptions-to-values to a txt file.";
             this.MenuDumpParamValuesDescriptions.Click += new System.EventHandler(this.MenuDumpParamValuesDescriptions_Click);
+            // 
+            // MenuOther
+            // 
+            this.MenuOther.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.MenuOther.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuOtherOpenResDir});
+            this.MenuOther.ForeColor = System.Drawing.SystemColors.Control;
+            this.MenuOther.Name = "MenuOther";
+            this.MenuOther.Size = new System.Drawing.Size(49, 20);
+            this.MenuOther.Text = "Other";
+            this.MenuOther.ToolTipText = "Misc things.";
+            // 
+            // MenuOtherOpenResDir
+            // 
+            this.MenuOtherOpenResDir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.MenuOtherOpenResDir.ForeColor = System.Drawing.SystemColors.Control;
+            this.MenuOtherOpenResDir.Name = "MenuOtherOpenResDir";
+            this.MenuOtherOpenResDir.Size = new System.Drawing.Size(195, 22);
+            this.MenuOtherOpenResDir.Text = "Open Resources Folder";
+            this.MenuOtherOpenResDir.ToolTipText = "Open the Resources folder.";
+            this.MenuOtherOpenResDir.Click += new System.EventHandler(this.MenuOtherOpenResDir_Click);
+            // 
+            // MenuRefresh
+            // 
+            this.MenuRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.MenuRefresh.ForeColor = System.Drawing.SystemColors.Control;
+            this.MenuRefresh.Name = "MenuRefresh";
+            this.MenuRefresh.Size = new System.Drawing.Size(58, 20);
+            this.MenuRefresh.Text = "Refresh";
+            this.MenuRefresh.ToolTipText = "Refresh the DatGridView controls.";
+            this.MenuRefresh.Click += new System.EventHandler(this.MenuRefresh_Click);
             // 
             // MainFormToolStrip
             // 
@@ -637,40 +700,40 @@
             this.FileDGV.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this.FileDGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.FileDGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.FileDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.FileDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.FileDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FileDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.filename});
             this.FileDGV.ContextMenuStrip = this.ContextMenuFile;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.FileDGV.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.FileDGV.DefaultCellStyle = dataGridViewCellStyle11;
             this.FileDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FileDGV.EnableHeadersVisualStyles = false;
             this.FileDGV.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.FileDGV.Location = new System.Drawing.Point(0, 0);
             this.FileDGV.Name = "FileDGV";
             this.FileDGV.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.FileDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.FileDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.FileDGV.RowTemplate.Height = 24;
             this.FileDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.FileDGV.Size = new System.Drawing.Size(266, 401);
@@ -729,41 +792,41 @@
             this.CellDGV.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this.CellDGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CellDGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CellDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CellDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.CellDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CellDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.celltype,
             this.celldescription,
             this.cellvalue});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.CellDGV.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.CellDGV.DefaultCellStyle = dataGridViewCellStyle8;
             this.CellDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CellDGV.EnableHeadersVisualStyles = false;
             this.CellDGV.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.CellDGV.Location = new System.Drawing.Point(0, 0);
             this.CellDGV.Name = "CellDGV";
             this.CellDGV.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CellDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CellDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.CellDGV.RowTemplate.Height = 24;
             this.CellDGV.Size = new System.Drawing.Size(530, 401);
             this.CellDGV.TabIndex = 1;
@@ -789,69 +852,6 @@
             this.cellvalue.HeaderText = "Value";
             this.cellvalue.Name = "cellvalue";
             this.cellvalue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // MenuImport
-            // 
-            this.MenuImport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.MenuImport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuImportDbp});
-            this.MenuImport.ForeColor = System.Drawing.SystemColors.Control;
-            this.MenuImport.Name = "MenuImport";
-            this.MenuImport.Size = new System.Drawing.Size(194, 22);
-            this.MenuImport.Text = "Import";
-            this.MenuImport.ToolTipText = "Import data into the editor or current files within the editor.";
-            // 
-            // MenuImportDbp
-            // 
-            this.MenuImportDbp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.MenuImportDbp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuImportDbpDescriptions});
-            this.MenuImportDbp.ForeColor = System.Drawing.SystemColors.Control;
-            this.MenuImportDbp.Name = "MenuImportDbp";
-            this.MenuImportDbp.Size = new System.Drawing.Size(180, 22);
-            this.MenuImportDbp.Text = "Dbp";
-            this.MenuImportDbp.ToolTipText = "Import data into dbps";
-            // 
-            // MenuImportDbpDescriptions
-            // 
-            this.MenuImportDbpDescriptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.MenuImportDbpDescriptions.ForeColor = System.Drawing.SystemColors.Control;
-            this.MenuImportDbpDescriptions.Name = "MenuImportDbpDescriptions";
-            this.MenuImportDbpDescriptions.Size = new System.Drawing.Size(180, 22);
-            this.MenuImportDbpDescriptions.Text = "Descriptions";
-            this.MenuImportDbpDescriptions.ToolTipText = "Import new descriptions into a dbp.";
-            this.MenuImportDbpDescriptions.Click += new System.EventHandler(this.MenuImportDbpDescriptions_Click);
-            // 
-            // MenuOther
-            // 
-            this.MenuOther.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.MenuOther.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuOtherOpenResDir});
-            this.MenuOther.ForeColor = System.Drawing.SystemColors.Control;
-            this.MenuOther.Name = "MenuOther";
-            this.MenuOther.Size = new System.Drawing.Size(49, 20);
-            this.MenuOther.Text = "Other";
-            this.MenuOther.ToolTipText = "Misc things.";
-            // 
-            // MenuRefresh
-            // 
-            this.MenuRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.MenuRefresh.ForeColor = System.Drawing.SystemColors.Control;
-            this.MenuRefresh.Name = "MenuRefresh";
-            this.MenuRefresh.Size = new System.Drawing.Size(58, 20);
-            this.MenuRefresh.Text = "Refresh";
-            this.MenuRefresh.ToolTipText = "Refresh the DatGridView controls.";
-            this.MenuRefresh.Click += new System.EventHandler(this.MenuRefresh_Click);
-            // 
-            // MenuOtherOpenResDir
-            // 
-            this.MenuOtherOpenResDir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.MenuOtherOpenResDir.ForeColor = System.Drawing.SystemColors.Control;
-            this.MenuOtherOpenResDir.Name = "MenuOtherOpenResDir";
-            this.MenuOtherOpenResDir.Size = new System.Drawing.Size(195, 22);
-            this.MenuOtherOpenResDir.Text = "Open Resources Folder";
-            this.MenuOtherOpenResDir.ToolTipText = "Open the Resources folder.";
-            this.MenuOtherOpenResDir.Click += new System.EventHandler(this.MenuOtherOpenResDir_Click);
             // 
             // MainForm
             // 
@@ -899,9 +899,6 @@
         private System.Windows.Forms.DataGridView FileDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn filename;
         private System.Windows.Forms.DataGridView CellDGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn celltype;
-        private System.Windows.Forms.DataGridViewTextBoxColumn celldescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cellvalue;
         private System.Windows.Forms.ToolStripMenuItem MenuSaveAll;
         private System.Windows.Forms.ToolStripMenuItem MenuCloseAll;
         private System.Windows.Forms.ToolStripComboBox GameComboBox;
@@ -951,6 +948,9 @@
         private System.Windows.Forms.ToolStripMenuItem MenuOther;
         private System.Windows.Forms.ToolStripMenuItem MenuOtherOpenResDir;
         private System.Windows.Forms.ToolStripMenuItem MenuRefresh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn celltype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn celldescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cellvalue;
     }
 }
 

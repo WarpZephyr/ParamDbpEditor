@@ -42,6 +42,16 @@ namespace Utilities
         /// A string representing the path to a generic log file named "log.txt" inside of the directory the program is running from.
         /// </summary>
         public static string LogTxt = $"{EnvFolderPath}\\log.txt";
+		
+		/// <summary>
+        /// The default initial directory used if none are specified.
+        /// </summary>
+        public static string DefaultInitialDirectory = "C:\\Users";
+
+        /// <summary>
+        /// The default file filter used if none are specified.
+        /// </summary>
+        public static string DefaultFilter = "All files (*)|*";
 
         /// <summary>
         /// Get a single file from a user.

@@ -36,14 +36,14 @@ namespace ParamDbpEditor
         }
 
         /// <summary>
-        /// The Description of the cell from its dbp field.
+        /// The DisplayName of the cell from its dbp field.
         /// </summary>
-        public string Description
+        public string DisplayName
         {
-            get => Cell.Description;
+            get => Cell.DisplayName;
             set
             {
-                Cell.Description = value;
+                Cell.DisplayName = value;
             }
         }
 
@@ -74,7 +74,7 @@ namespace ParamDbpEditor
         public CellWrapper(DBPPARAM.Cell cell)
         {
             Cell = cell;
-            Description = cell.Description;
+            DisplayName = cell.DisplayName;
             DisplayType = cell.Dbp.DisplayTypeToString();
         }
 

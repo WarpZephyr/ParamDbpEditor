@@ -741,7 +741,7 @@ namespace ParamDbpEditor
                     {
                         string[] lines = new string[param.Cells.Count];
                         for (int i = 0; i < param.Cells.Count; i++)
-                            lines[i] = $"{(param.Cells[i].Description == "" ? "%NULL%" : param.Cells[i].Description)} = {param.Cells[i].Value}";
+                            lines[i] = $"{(param.Cells[i].DisplayName == "" ? "%NULL%" : param.Cells[i].DisplayName)} = {param.Cells[i].Value}";
                         File.WriteAllLines(outPath, lines);
                         count++;
                     }
@@ -798,7 +798,7 @@ namespace ParamDbpEditor
             CellDGV.AutoGenerateColumns = false;
             CellDGV.DataSource = ((DbpParamWrapper)FileDGV.CurrentRow.DataBoundItem).Cells;
             CellDGV.Columns[0].DataPropertyName = "DisplayType";
-            CellDGV.Columns[1].DataPropertyName = "Description";
+            CellDGV.Columns[1].DataPropertyName = "DisplayName";
             CellDGV.Columns[2].DataPropertyName = "Value";
         }
 
@@ -923,10 +923,18 @@ namespace ParamDbpEditor
             StatusLabel.Text = $"Loaded {count} dbps out of {total} given dbps in Resources\\{GameComboBox.Text}\\dbp.";
         }
 
-        private DbpWrapper DbpApplyHandler(ref DBPPARAM param, string name)
+        private DbpWrapper DbpApplyHandlerStrict(ref DBPPARAM param, string name)
         {
             foreach (var dbp in Dbps)
                 if (name.Contains(Path.GetFileNameWithoutExtension(dbp.Path).ToLower()) && param.ApplyParamDbp(dbp.Dbp))
+                    return dbp;
+            return null;
+        }
+
+        private DbpWrapper DbpApplyHandler(ref DBPPARAM param, string name)
+        {
+            foreach (var dbp in Dbps)
+                if (param.ApplyParamDbp(dbp.Dbp))
                     return dbp;
             return null;
         }
@@ -947,12 +955,16 @@ namespace ParamDbpEditor
 
                 DBPPARAM dbpparam = DBPPARAM.Read(path);
                 string name = Path.GetFileNameWithoutExtension(path).ToLower();
-                var dbp = DbpApplyHandler(ref dbpparam, name);
+                DbpWrapper dbp;
+                if (GameComboBox.Text != "Custom")
+                    dbp = DbpApplyHandlerStrict(ref dbpparam, name);
+                else
+                    dbp = DbpApplyHandler(ref dbpparam, name);
                 if (dbp != null)
                 {
                     string pathname = Path.GetFileNameWithoutExtension(path).ToLower();
                     string dbppathname = Path.GetFileNameWithoutExtension(dbp.Path).ToLower();
-                    if (pathname != dbppathname)
+                    if (pathname != dbppathname && GameComboBox.Text != "Custom")
                         continue;
 
                     DbpParams.Add(new DbpParamWrapper(dbpparam, path, dbp.Path));
@@ -965,5 +977,10 @@ namespace ParamDbpEditor
         }
 
         #endregion HelperMethods
+
+        private void MenuNew_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
