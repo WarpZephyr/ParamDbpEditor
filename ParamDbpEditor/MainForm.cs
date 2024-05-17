@@ -977,10 +977,5 @@ namespace ParamDbpEditor
         }
 
         #endregion HelperMethods
-
-        private void MenuNew_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
