@@ -1,10 +1,8 @@
 ﻿using SoulsFormats;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using Utilities;
 
 namespace ParamDbpEditor
 {
@@ -44,57 +42,6 @@ namespace ParamDbpEditor
             Param
         }
 
-        internal static int ExportDbpToUserPath(ExportType type)
-        {
-            string[] paths = PathUtil.GetFilePaths("C:\\Users", $"Select dbps to export to {type.GetExtension()}", "Dbp (*.dbp)|*.dbp|All files (*.*)|*.*");
-            if (paths == null)
-                return -1;
-
-            int count = 0;
-            foreach (string path in paths)
-            {
-                if (!File.Exists(path))
-                    continue;
-
-                try
-                {
-                    PathUtil.Backup($"{Path.GetDirectoryName(path)}\\{Path.GetFileNameWithoutExtension(path)}.{type.GetExtension()}");
-                    if (Export(PARAMDBP.Read(path), path, type))
-                        count++;
-                }
-                catch{}
-            }
-
-            return count;
-        }
-
-        internal static int ExportParamToUserPath(ExportType type, List<DbpWrapper> dbps)
-        {
-            if (dbps == null || dbps.Count == 0)
-                return -1;
-
-            string[] paths = PathUtil.GetFilePaths("C:\\Users", $"Select params to export to {type.GetExtension()}", "Param (*.bin)|*.bin|All files (*.*)|*.*");
-            if (paths == null)
-                return -1;
-
-            int count = 0;
-            foreach (string path in paths)
-            {
-                if (!File.Exists(path))
-                    continue;
-                try
-                {
-                    PathUtil.Backup($"{Path.GetDirectoryName(path)}\\{Path.GetFileNameWithoutExtension(path)}.{type.GetExtension()}");
-                    var param = DBPPARAM.Read(path);
-                    if (param.ApplyParamDbp(DbpWrapper.UnwrapDbps(dbps)))
-                        if (Export(param, path, type))
-                            count++;
-                }
-                catch{}
-            }
-            return count;
-        }
-
         /// <summary>
         /// Export a dbp.
         /// </summary>
@@ -109,10 +56,10 @@ namespace ParamDbpEditor
                 switch (type)
                 {
                     case ExportType.Txt:
-                        PARAMDBP.TxtSerializer.Serialize(dbp, path);
+                        PARAMDBP.TxtSerializer.SerializeDbp(dbp, $"{Path.GetDirectoryName(path)}\\{Path.GetFileNameWithoutExtension(path)}.txt");
                         return true;
                     case ExportType.Xml:
-                        PARAMDBP.XmlSerializer.Serialize(dbp, path);
+                        PARAMDBP.XmlSerializer.SerializeDbp(dbp, $"{Path.GetDirectoryName(path)}\\{Path.GetFileNameWithoutExtension(path)}.xml");
                         return true;
                     case ExportType.Json:
                         var options = new JsonSerializerOptions();
@@ -154,10 +101,10 @@ namespace ParamDbpEditor
                 switch (type)
                 {
                     case ExportType.Txt:
-                        PARAMDBP.TxtSerializer.Serialize(param, path);
+                        PARAMDBP.TxtSerializer.SerializeParam(param, $"{Path.GetDirectoryName(path)}\\{Path.GetFileNameWithoutExtension(path)}.txt");
                         return true;
                     case ExportType.Xml:
-                        PARAMDBP.XmlSerializer.Serialize(param, path);
+                        PARAMDBP.XmlSerializer.SerializeParam(param, $"{Path.GetDirectoryName(path)}\\{Path.GetFileNameWithoutExtension(path)}.xml");
                         return true;
                     case ExportType.Json:
                         var options = new JsonSerializerOptions();

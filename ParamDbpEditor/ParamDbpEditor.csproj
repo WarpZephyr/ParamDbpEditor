@@ -1,406 +1,284 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B52D0CC1-C70A-40C6-A418-7FA6BC465D4E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ParamDbpEditor</RootNamespace>
-    <AssemblyName>ParamDbpEditor</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
-    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
-    <Reference Include="System.Text.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CellWrapper.cs" />
-    <Compile Include="Converter.cs" />
-    <Compile Include="CustomForms\Input.cs">
+    <Compile Update="CustomForms\Input.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomForms\Input.Designer.cs">
-      <DependentUpon>Input.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CustomForms\InputCombobox.cs">
+    <Compile Update="CustomForms\InputCombobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomForms\InputCombobox.Designer.cs">
-      <DependentUpon>InputCombobox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CustomForms\InputText.cs">
+    <Compile Update="CustomForms\InputText.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomForms\InputText.Designer.cs">
-      <DependentUpon>InputText.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CustomForms\SelectableColorTable.cs" />
-    <Compile Include="CustomForms\SelectableColorToolStripRenderer.cs" />
-    <Compile Include="DbpParamWrapper.cs" />
-    <Compile Include="DbpWrapper.cs" />
-    <Compile Include="Exporter.cs" />
-    <Compile Include="EditorJsonSerializer.cs" />
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\FormUtil.cs" />
-    <Compile Include="Utilities\Logger.cs" />
-    <Compile Include="Utilities\PathUtil.cs" />
-    <EmbeddedResource Include="CustomForms\Input.resx">
-      <DependentUpon>Input.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CustomForms\InputCombobox.resx">
-      <DependentUpon>InputCombobox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CustomForms\InputText.resx">
-      <DependentUpon>InputText.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <None Include="Resources\AC4\dbp\acanimparam.dbp">
+    <None Update="Resources\AC4\dbp\acanimparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\acbehavior.dbp">
+    <None Update="Resources\AC4\dbp\acbehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\acbehavior.dbp.original">
+    <None Update="Resources\AC4\dbp\acbehavior.dbp.original">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\accambehavior.dbp">
+    <None Update="Resources\AC4\dbp\accambehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\acsisdisplaycommon.dbp">
+    <None Update="Resources\AC4\dbp\acsisdisplaycommon.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\aigeneralparam.dbp">
+    <None Update="Resources\AC4\dbp\aigeneralparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\assemble.dbp">
+    <None Update="Resources\AC4\dbp\assemble.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\damage.dbp">
+    <None Update="Resources\AC4\dbp\damage.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\enemybehavior.dbp">
+    <None Update="Resources\AC4\dbp\enemybehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\explosion.dbp">
+    <None Update="Resources\AC4\dbp\explosion.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\lockdeflection.dbp">
+    <None Update="Resources\AC4\dbp\lockdeflection.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\missile.dbp">
+    <None Update="Resources\AC4\dbp\missile.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\missionestimatecommon.dbp">
+    <None Update="Resources\AC4\dbp\missionestimatecommon.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\missiongeneralparam.dbp">
+    <None Update="Resources\AC4\dbp\missiongeneralparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\movementparam.dbp">
+    <None Update="Resources\AC4\dbp\movementparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\movementparam.dbp.original">
+    <None Update="Resources\AC4\dbp\movementparam.dbp.original">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\newacbehavior.dbp">
+    <None Update="Resources\AC4\dbp\newacbehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\primalarmor.dbp">
+    <None Update="Resources\AC4\dbp\primalarmor.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\radar.dbp">
+    <None Update="Resources\AC4\dbp\radar.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\sidebooster.dbp">
+    <None Update="Resources\AC4\dbp\sidebooster.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\AC4\dbp\weaponestimation.dbp">
+    <None Update="Resources\AC4\dbp\weaponestimation.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\AcAnimParam.dbp">
+    <None Update="Resources\ACFA\dbp\AcAnimParam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\AcsisDisplayCommon.dbp">
+    <None Update="Resources\ACFA\dbp\AcsisDisplayCommon.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\AcVibrationParam.dbp">
+    <None Update="Resources\ACFA\dbp\AcVibrationParam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\AIGeneralParam.dbp">
+    <None Update="Resources\ACFA\dbp\AIGeneralParam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\Assemble.dbp">
+    <None Update="Resources\ACFA\dbp\Assemble.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\Damage.dbp">
+    <None Update="Resources\ACFA\dbp\Damage.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\EnemyBehavior.dbp">
+    <None Update="Resources\ACFA\dbp\EnemyBehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\Explosion.dbp">
+    <None Update="Resources\ACFA\dbp\Explosion.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\LockDeflection.dbp">
+    <None Update="Resources\ACFA\dbp\LockDeflection.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\Missile.dbp">
+    <None Update="Resources\ACFA\dbp\Missile.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\MissionEstimateCommon.dbp">
+    <None Update="Resources\ACFA\dbp\MissionEstimateCommon.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\MissionGeneralParam.dbp">
+    <None Update="Resources\ACFA\dbp\MissionGeneralParam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\NewAcBehavior.dbp">
+    <None Update="Resources\ACFA\dbp\NewAcBehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\Radar.dbp">
+    <None Update="Resources\ACFA\dbp\Radar.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\SideBooster.dbp">
+    <None Update="Resources\ACFA\dbp\SideBooster.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\SuperOverBooster.dbp">
+    <None Update="Resources\ACFA\dbp\SuperOverBooster.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACFA\dbp\WeaponEstimation.dbp">
+    <None Update="Resources\ACFA\dbp\WeaponEstimation.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\acanimparam.dbp">
+    <None Update="Resources\ACVD\dbp\acanimparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\acsisdisplaycommon.dbp">
+    <None Update="Resources\ACVD\dbp\acsisdisplaycommon.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\acvibrationparam.dbp">
+    <None Update="Resources\ACVD\dbp\acvibrationparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\aigeneralparam.dbp">
+    <None Update="Resources\ACVD\dbp\aigeneralparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\assemble.dbp">
+    <None Update="Resources\ACVD\dbp\assemble.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\damage.dbp">
+    <None Update="Resources\ACVD\dbp\damage.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\dlcsystemparam.dbp">
+    <None Update="Resources\ACVD\dbp\dlcsystemparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\enemybehavior.dbp">
+    <None Update="Resources\ACVD\dbp\enemybehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\explosion.dbp">
+    <None Update="Resources\ACVD\dbp\explosion.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\lockdeflection.dbp">
+    <None Update="Resources\ACVD\dbp\lockdeflection.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\menuparam.dbp">
+    <None Update="Resources\ACVD\dbp\menuparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\menusoundid.dbp">
+    <None Update="Resources\ACVD\dbp\menusoundid.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\missile.dbp">
+    <None Update="Resources\ACVD\dbp\missile.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\missionestimatecommon.dbp">
+    <None Update="Resources\ACVD\dbp\missionestimatecommon.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\missiongeneralparam.dbp">
+    <None Update="Resources\ACVD\dbp\missiongeneralparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\newacbehavior.dbp">
+    <None Update="Resources\ACVD\dbp\newacbehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\newenemybehavior.dbp">
+    <None Update="Resources\ACVD\dbp\newenemybehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\radar.dbp">
+    <None Update="Resources\ACVD\dbp\radar.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\serversystemparam.dbp">
+    <None Update="Resources\ACVD\dbp\serversystemparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\sidebooster.dbp">
+    <None Update="Resources\ACVD\dbp\sidebooster.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\staticdrawparam.dbp">
+    <None Update="Resources\ACVD\dbp\staticdrawparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\superoverbooster.dbp">
+    <None Update="Resources\ACVD\dbp\superoverbooster.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACVD\dbp\weaponestimation.dbp">
+    <None Update="Resources\ACVD\dbp\weaponestimation.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\acanimparam.dbp">
+    <None Update="Resources\ACV\dbp\acanimparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\acsisdisplaycommon.dbp">
+    <None Update="Resources\ACV\dbp\acsisdisplaycommon.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\acvibrationparam.dbp">
+    <None Update="Resources\ACV\dbp\acvibrationparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\aigeneralparam.dbp">
+    <None Update="Resources\ACV\dbp\aigeneralparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\assemble.dbp">
+    <None Update="Resources\ACV\dbp\assemble.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\damage.dbp">
+    <None Update="Resources\ACV\dbp\damage.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\dlcsystemparam.dbp">
+    <None Update="Resources\ACV\dbp\dlcsystemparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\enemybehavior.dbp">
+    <None Update="Resources\ACV\dbp\enemybehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\explosion.dbp">
+    <None Update="Resources\ACV\dbp\explosion.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\lockdeflection.dbp">
+    <None Update="Resources\ACV\dbp\lockdeflection.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\menuparam.dbp">
+    <None Update="Resources\ACV\dbp\menuparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\menusoundid.dbp">
+    <None Update="Resources\ACV\dbp\menusoundid.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\missile.dbp">
+    <None Update="Resources\ACV\dbp\missile.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\missionestimatecommon.dbp">
+    <None Update="Resources\ACV\dbp\missionestimatecommon.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\missiongeneralparam.dbp">
+    <None Update="Resources\ACV\dbp\missiongeneralparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\newacbehavior.dbp">
+    <None Update="Resources\ACV\dbp\newacbehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\newenemybehavior.dbp">
+    <None Update="Resources\ACV\dbp\newenemybehavior.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\radar.dbp">
+    <None Update="Resources\ACV\dbp\radar.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\serversystemparam.dbp">
+    <None Update="Resources\ACV\dbp\serversystemparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\sidebooster.dbp">
+    <None Update="Resources\ACV\dbp\sidebooster.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\staticdrawparam.dbp">
+    <None Update="Resources\ACV\dbp\staticdrawparam.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\superoverbooster.dbp">
+    <None Update="Resources\ACV\dbp\superoverbooster.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ACV\dbp\weaponestimation.dbp">
+    <None Update="Resources\ACV\dbp\weaponestimation.dbp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\SoulsFormatsExtended\SoulsFormats\SoulsFormatsExtended.csproj">
-      <Project>{5f0ac9c0-12ca-4273-8e74-4e951b298a36}</Project>
-      <Name>SoulsFormatsExtended</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\README.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="Resources\Custom\dbp\AcColorSet.dbp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Custom\dbp\add-custom-dbps-to-this-folder">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Content Include="Resources\Games.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\SoulsFormatsNEXT\SoulsFormats\SoulsFormats.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
 </Project>

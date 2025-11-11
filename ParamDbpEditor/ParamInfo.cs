@@ -1,15 +1,13 @@
 ﻿using SoulsFormats;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using Utilities;
 
 namespace ParamDbpEditor
 {
     /// <summary>
     /// A wrapper made to find paths to save DbpParams to easier.
     /// </summary>
-    internal class DbpParamWrapper
+    internal class ParamInfo
     {
         /// <summary>
         /// The param itself.
@@ -19,9 +17,9 @@ namespace ParamDbpEditor
         /// <summary>
         /// The cells in the param.
         /// </summary>
-        public List<CellWrapper> Cells
+        public List<CellInfo> Cells
         {
-            get => CellWrapper.CellsToWrapper(Param.Cells);
+            get => CellInfo.CellsToWrapper(Param.Cells);
         }
 
         /// <summary>
@@ -45,7 +43,7 @@ namespace ParamDbpEditor
         /// <summary>
         /// The path the param was loaded from and will be saved to.
         /// </summary>
-        internal string Path
+        internal string FilePath
         {
             get => Field_Path;
             set
@@ -89,19 +87,19 @@ namespace ParamDbpEditor
                 if (value == null)
                     throw new InvalidDataException("Name of param file cannot be null.");
 
-                string dir = System.IO.Path.GetDirectoryName(Path);
+                string dir = System.IO.Path.GetDirectoryName(FilePath);
                 string newPath = System.IO.Path.Combine(dir, value);
 
                 foreach (string path in Directory.GetFiles(dir))
                 {
                     if (File.Exists(newPath))
                     {
-                        newPath = Path;
+                        newPath = FilePath;
                         break;
                     }
                 }
 
-                Path = newPath;
+                FilePath = newPath;
                 Field_Name = value;
                 Modified = true;
             }
@@ -120,7 +118,7 @@ namespace ParamDbpEditor
         /// <summary>
         /// Create a new param wrapper with an empty param and no paths set.
         /// </summary>
-        internal DbpParamWrapper()
+        internal ParamInfo()
         {
             var param = new DBPPARAM();
             Param = param;
@@ -132,7 +130,7 @@ namespace ParamDbpEditor
         /// Create a new param wrapper with the chosen param and no paths set.
         /// </summary>
         /// <param name="param">The param to place in the wrapper.</param>
-        internal DbpParamWrapper(DBPPARAM param)
+        internal ParamInfo(DBPPARAM param)
         {
             Param = param;
             Modified = false;
@@ -144,12 +142,12 @@ namespace ParamDbpEditor
         /// </summary>
         /// <param name="param">The param to place in the wrapper.</param>
         /// <param name="path">The full file path to the chosen param.</param>
-        internal DbpParamWrapper(DBPPARAM param, string path, string dbpPath)
+        internal ParamInfo(DBPPARAM param, string path, string dbpPath)
         {
             Param = param;
             Field_Path = path;
             Field_DbpPath = dbpPath;
-            Field_Name = System.IO.Path.GetFileName(path);
+            Field_Name = Path.GetFileName(path);
             Modified = false;
             DbpModified = false;
         }
@@ -159,17 +157,17 @@ namespace ParamDbpEditor
         /// </summary>
         internal void WriteDbp()
         {
-            string extension = System.IO.Path.GetExtension(DbpPath).ToLower();
+            string extension = Path.GetExtension(DbpPath).ToLower();
             switch (extension)
             {
                 case ".dbp":
                     AppliedDbp.Write(DbpPath);
                     break;
                 case ".txt":
-                    PARAMDBP.TxtSerializer.Serialize(AppliedDbp, DbpPath);
+                    PARAMDBP.TxtSerializer.SerializeDbp(AppliedDbp, $"{Path.GetDirectoryName(DbpPath)}\\{Path.GetFileNameWithoutExtension(DbpPath)}.txt");
                     break;
                 case ".xml":
-                    PARAMDBP.XmlSerializer.Serialize(AppliedDbp, DbpPath);
+                    PARAMDBP.XmlSerializer.SerializeDbp(AppliedDbp, $"{Path.GetDirectoryName(DbpPath)}\\{Path.GetFileNameWithoutExtension(DbpPath)}.xml");
                     break;
                 case ".json":
                     break; // Not supported yet
@@ -183,7 +181,7 @@ namespace ParamDbpEditor
         /// </summary>
         internal void Write()
         {
-            Param.Write(Path);
+            Param.Write(FilePath);
         }
     }
 }

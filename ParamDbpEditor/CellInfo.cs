@@ -1,14 +1,12 @@
 ﻿using SoulsFormats;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace ParamDbpEditor
 {
     /// <summary>
     /// A wrapper to make managing cell value setting easier.
     /// </summary>
-    internal class CellWrapper
+    internal class CellInfo
     {
         /// <summary>
         /// The underlying cell.
@@ -20,19 +18,7 @@ namespace ParamDbpEditor
         /// </summary>
         public string DisplayType
         {
-            get => Cell.Dbp.DisplayTypeToString();
-            set
-            {
-                var oldtype = Cell.DisplayType;
-                try
-                {
-                    Cell.DisplayType = PARAMDBP.Field.GetDisplayType(value);
-                }
-                catch (NotImplementedException)
-                {
-                    Cell.DisplayType = oldtype;
-                }
-            }
+            get => Cell.Dbp.DisplayType.ToString();
         }
 
         /// <summary>
@@ -41,10 +27,6 @@ namespace ParamDbpEditor
         public string DisplayName
         {
             get => Cell.DisplayName;
-            set
-            {
-                Cell.DisplayName = value;
-            }
         }
 
         /// <summary>
@@ -71,11 +53,9 @@ namespace ParamDbpEditor
         /// Create a new cell wrapper.
         /// </summary>
         /// <param name="cell">The underlying cell.</param>
-        public CellWrapper(DBPPARAM.Cell cell)
+        public CellInfo(DBPPARAM.Cell cell)
         {
             Cell = cell;
-            DisplayName = cell.DisplayName;
-            DisplayType = cell.Dbp.DisplayTypeToString();
         }
 
         /// <summary>
@@ -83,11 +63,11 @@ namespace ParamDbpEditor
         /// </summary>
         /// <param name="cells">The list of cells to get a list of cell wrappers from.</param>
         /// <returns>A list of cellwrappers.</returns>
-        public static List<CellWrapper> CellsToWrapper(IEnumerable<DBPPARAM.Cell> cells)
+        public static List<CellInfo> CellsToWrapper(IEnumerable<DBPPARAM.Cell> cells)
         {
-            var wrappers = new List<CellWrapper>();
+            var wrappers = new List<CellInfo>();
             foreach (DBPPARAM.Cell cell in cells)
-                wrappers.Add(new CellWrapper(cell));
+                wrappers.Add(new CellInfo(cell));
             return wrappers;
         }
     }
